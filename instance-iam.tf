@@ -8,7 +8,7 @@ resource "aws_iam_role" "nodejs_instance_logs_role" {
 }
 
 resource "aws_iam_role_policy" "nodejs_instance_logs_policy" {
-    policy = data.aws_iam_policy_document.jenkins_instance_permissions_policy.json
+    policy = data.aws_iam_policy_document.nodejs_instance_permissions_policy.json
     role = aws_iam_role.nodejs_instance_logs_role.id
 }
 

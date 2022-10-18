@@ -2,15 +2,15 @@
 #  value = "values"
 #}
 output "instance_dns" {
-  value = aws_instance.nodejs_ubu_instance[*].public_dns
+  value = aws_instance.nodejs_amazn_instance[*].public_dns
 }
 
 output "instance_id" {
-  value = aws_instance.nodejs_ubu_instance[*].id
+  value = aws_instance.nodejs_amazn_instance[*].id
 }
 
 output "instance_ip" {
-  value = aws_instance.nodejs_ubu_instance[*].public_ip
+  value = aws_instance.nodejs_amazn_instance[*].public_ip
 }
 
 output "security_group_id" {

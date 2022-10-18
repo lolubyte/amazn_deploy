@@ -47,7 +47,7 @@ data "aws_ssm_parameter" "latest_ami" {
 #   key_name   = "lbitc-west-test-KP.pem"
 # }
 
-resource "aws_instance" "nodejs_ubu_instance" {
+resource "aws_instance" "nodejs_amazn_instance" {
   count = 1
   ami = data.aws_ssm_parameter.latest_ami.value
   instance_type = "t2.micro"
@@ -63,10 +63,18 @@ resource "aws_instance" "nodejs_ubu_instance" {
     "Team" = "DevOps"}
   key_name = var.instance_key_name
     #vpc_security_group_ids = [ aws_security_group.lbitc_nodejs_sg.id ]
-  vpc_security_group_ids = [aws_security_group.lbitc_nodejs_sg.id]
+  vpc_security_group_ids = [
+    aws_security_group.lbitc_nodejs_sg.id,
+    module.mylbitc_mod.security_group_id
+  ]
   ebs_block_device {
     device_name = "/dev/sda1"
     volume_size = 20
   } 
   iam_instance_profile = aws_iam_instance_profile.nodejs_instance_profile.name
+}
+
+module "mylbitc_mod" {
+  source = "./modules/general_security"
+  
 }
